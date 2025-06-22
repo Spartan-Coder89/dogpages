@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class to handle admin setup
+ */
 class DMEP_Admin extends DMEP_Frontend_Page
 {
   function __construct() {

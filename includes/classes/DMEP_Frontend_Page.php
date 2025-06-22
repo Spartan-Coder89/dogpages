@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Abstract utility class for frontend 
+ * page setup and generation
+ */
 abstract class DMEP_Frontend_Page
 {
   function create_page( $page_title, $page_slug, $page_author = 1, $post_content = '' ) {

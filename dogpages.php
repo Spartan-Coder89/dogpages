@@ -13,7 +13,7 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 spl_autoload_register( function ( $class ) {
-  if ( $class !== 'WP_Site_Health' and $class !== 'WP_Automatic_Updater' ) {
+  if ( $class !== 'WP_Site_Health' and $class !== 'WP_Automatic_Updater' and $class !== 'WP_Filesystem_direct' ) {
     require_once plugin_dir_path(__FILE__) .'includes/classes/' . $class . '.php';
   }
 });

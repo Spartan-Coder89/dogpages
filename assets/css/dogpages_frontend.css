@@ -1,0 +1,29 @@
+#dmep_content {
+  padding: 48px 0px;
+}
+
+#dmep_content .wrap {
+    max-width: 640px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px 24px;
+}
+
+#dmep_content .wrap .img_view {
+    height: 480px;
+    border: 15px ridge #b9b9b9;
+    background-image: url('../imgs/placeholder-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#dmep_content .wrap h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+#dmep_content .wrap p {
+    font-size: 16px;
+    font-weight: 400;
+} 

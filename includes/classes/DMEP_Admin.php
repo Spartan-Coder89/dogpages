@@ -1,7 +1,9 @@
 <?php
+namespace DMEP;
 
 /**
- * Class to handle admin setup
+ * Class to handle admin page setup 
+ * and data saving
  */
 class DMEP_Admin extends DMEP_Frontend_Page
 {
@@ -16,7 +18,9 @@ class DMEP_Admin extends DMEP_Frontend_Page
     $this->enqueue_style( 'dog', 'dog_page_style', DMEP_URL .'/assets/css/dogpages_frontend.css' );
   }
 
-
+  /**
+   * Add a page to the admin menu
+   */
   function register_admin_menu() {
 
     $icon = 'data:image/svg+xml;base64,' . base64_encode('
@@ -43,8 +47,7 @@ class DMEP_Admin extends DMEP_Frontend_Page
           <path class="st0" d="M253.397,350.86c-22.963,0-41.579,13.975-41.579,31.19c0,17.224,18.616,31.19,41.579,31.19
             c22.97,0,41.586-13.966,41.586-31.19C294.984,364.835,276.368,350.86,253.397,350.86z"/>
           <circle class="st0" cx="333.971" cy="249.502" r="25.992"/>
-          <path class="st0" d="M372.08,71.039c-17.316,0-20.793,36.388-20.793,36.388h38.126C389.413,107.426,389.396,71.039,372.08,71.039z"
-            />
+          <path class="st0" d="M372.08,71.039c-17.316,0-20.793,36.388-20.793,36.388h38.126C389.413,107.426,389.396,71.039,372.08,71.039z"/>
         </g>
       </svg>
     ');
@@ -61,19 +64,32 @@ class DMEP_Admin extends DMEP_Frontend_Page
     );
   }
 
-
+  /**
+   * Enqueue neccessary scripts and styles
+   * Localize scripts if needed
+   */
   function enqueue_scripts_styles() {
 
     global $current_screen;
 
     if( $current_screen->base == 'toplevel_page_dogpages' and $current_screen->id == 'toplevel_page_dogpages' ) {
+
       wp_enqueue_style( 'dogpages_admin_style', DMEP_URL .'/assets/css/dogpages_admin.css' );
+
       wp_enqueue_media();
       wp_enqueue_script( 'dogpages_admin_script', DMEP_URL .'/assets/js/dogpages_admin.js', [], '', true );
+      wp_localize_script( 'dogpages_admin_script', 'ajax_obj', [
+        'action' => 'dmep_activate_license',
+        'url' => admin_url( 'admin-ajax.php' ),
+        'nonce' => wp_create_nonce( 'dmep_activate_license_nonce' )
+      ]);
     }
   }
 
-
+  /**
+   * Form action logic to save the
+   * uploaded dog image
+   */
   function save_dog_image() {
 
     if( !isset( $_POST['save_dog_image_nonce'] ) ) {

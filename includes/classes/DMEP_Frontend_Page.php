@@ -1,4 +1,5 @@
 <?php
+namespace DMEP;
 
 /**
  * Abstract utility class for frontend 
@@ -18,7 +19,9 @@ abstract class DMEP_Frontend_Page
     ]);
   } 
 
-
+  /**
+   * Setup the page template to override the default
+   */
   function set_page_template( $page_slug, $template_path ) {
     
     add_filter('template_include', function( $template ) use ( $page_slug, $template_path ) {
@@ -27,7 +30,9 @@ abstract class DMEP_Frontend_Page
     });
   }
 
-
+  /**
+   * Enqueue frontend stylesheet
+   */
   function enqueue_style( $page_slug, $handler_name, $stylesheet_path ) {
 
     if( $page_slug !== '' ) {
@@ -38,7 +43,9 @@ abstract class DMEP_Frontend_Page
     }
   }
 
-  
+  /**
+   * Enqueue frontend script
+   */
   function enqueue_script( $page_slug, $handler_name, $script_path ) {
 
     if( $page_slug !== '' ) {

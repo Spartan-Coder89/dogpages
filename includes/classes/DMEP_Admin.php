@@ -55,7 +55,7 @@ class DMEP_Admin extends DMEP_Frontend_Page
     add_menu_page( 
       __( 'Dog Pages', 'textdomain' ), 
       __( 'DogPages', 'textdomain' ), 
-      'Super Admin', 
+      'manage_options', 
       'dogpages', 
       function() {
         require_once DMEP_PATH .'/includes/templates/admin_dogpages.php';

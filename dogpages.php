@@ -16,13 +16,25 @@ if ( ! function_exists( 'add_action' ) ) {
  * Redirect to DogPages on first install
  * to prompt for license code
  */
-if( !is_multisite() and get_option( 'is_first_time_install' ) === false ) {
+if( !is_multisite() and get_option( 'dmep_dog_image_license'. get_current_blog_id() ) === false ) {
   
-  update_option( 'is_first_time_install', true );
-  
+  //  Set flag on activation
   register_activation_hook( __FILE__, function() {
-    wp_safe_redirect( admin_url( 'admin.php?page=dogpages' ) );
-    exit;
+    add_option( 'is_first_time_install', true );
+  });
+
+  //  Redirect to dogpages if flag is true
+  add_action( 'admin_init', function() {
+
+    if( get_option( 'is_first_time_install' ) ) {
+
+      delete_option('is_first_time_install');
+
+      if( is_admin() ) {
+        wp_safe_redirect( admin_url( 'admin.php?page=dogpages' ) );
+        exit;
+      }
+    }
   });
 }
 

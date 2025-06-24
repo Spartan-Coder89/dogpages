@@ -22,6 +22,7 @@ if( !is_multisite() and get_option( 'is_first_time_install' ) === false ) {
   
   register_activation_hook( __FILE__, function() {
     wp_safe_redirect( admin_url( 'admin.php?page=dogpages' ) );
+    exit;
   });
 }
 

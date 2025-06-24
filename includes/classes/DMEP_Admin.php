@@ -100,6 +100,12 @@ class DMEP_Admin extends DMEP_Frontend_Page
       return;
     }
 
+    $dmep_dog_image_license = get_option( 'dmep_dog_image_license'. get_current_blog_id() );
+    if( $dmep_dog_image_license === false or $dmep_dog_image_license === '' ) {
+      wp_safe_redirect( admin_url('admin.php?page=dogpages') );
+      exit;
+    }
+
     if( !isset( $_POST['dmep_dog_image'] ) ) {
       wp_safe_redirect( admin_url('admin.php?page=dogpages') );
       exit;

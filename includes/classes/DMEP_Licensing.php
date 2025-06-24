@@ -1,6 +1,10 @@
 <?php
 namespace DMEP;
 
+/**
+ * Class to handle license activation, 
+ * saving and checking 
+ */
 class DMEP_Licensing
 {
   function __construct() {
